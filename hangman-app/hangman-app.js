@@ -2,6 +2,25 @@ const Hangman = function(word, remainingGuesses) {
     this.word = word.toLowerCase().split('')
     this.remainingGuesses = remainingGuesses
     this.guessedLetters = []
+    this.status = 'playing'
+}
+
+Hangman.prototype.calculateStatus = function() {
+    const finished = this.word.every((letter) => {
+        return this.guessedLetters.includes(letter)
+    })
+    // const lettersUnguessed = this.word.filter((letter) => {
+    //     return !this.guessedLetters.includes(letter)
+    // })
+    // const finished = lettersUnguessed.length === 0
+
+    if (this.remainingGuesses === 0) {
+        this.status = 'failed'
+    } else if (finished) {
+        this.status = 'finished'
+    } else {
+        this.status = 'playing'
+    }
 }
 
 Hangman.prototype.getPuzzle = function() {
@@ -30,4 +49,6 @@ Hangman.prototype.makeGuess = function (guess) {
     if (isUnique && isBadGuess) {
         this.remainingGuesses--
     }
+
+    this.calculateStatus()
 }
