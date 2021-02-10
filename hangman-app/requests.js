@@ -5,5 +5,7 @@ const getPuzzle = (wordCount) => {
         } else {
             throw new Error('Unable to fetch the puzzle')
         }
+    }).then((data) => {
+        return data.puzzle
     })
 }
