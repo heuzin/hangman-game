@@ -33,4 +33,4 @@ $ live-server
 
 ## Screenshot
 
-![GitHub Logo](/images/hangman-app.png)
+![GitHub Logo](/public/images/hangman-app.png)
